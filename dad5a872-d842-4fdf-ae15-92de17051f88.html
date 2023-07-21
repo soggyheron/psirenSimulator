@@ -1,0 +1,50 @@
+<html>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+ 
+        <div class="mermaid">
+            
+graph TB;
+
+subgraph DomainObject;
+direction LR;
+BA(Create population estimate);
+BB(Define simple runoff scheme);
+BC(Initializes cohort collections);
+BD(Creates and updates Land Surface Store LSS);
+end
+
+BA & BB --> BD;
+
+subgraph CohortCollection;
+direction LR;
+CA(Acquires input flux from LSS);
+CB(Disaggregates input according to cohorts);
+CA -.-> CB;
+CC(Acquires timestep flow and hydraulics);
+CD(Advances cohorts);
+CB & CC -.-> CD;
+end
+BD -.-> CA;
+subgraph Cohorts;
+direction TB;
+DB(Acquire timestep flow and hydraulics );
+DC["Array Pre-solves: Settling Resuspension"];
+DD[Network traversal];
+DE[Array Post-solves: Bed store];
+DB --> DC;
+DC --> DD;
+DD --> DE;
+end
+
+BC -.-> CohortCollection;
+
+CD -.-> DB;
+
+        </div>
+ 
+    </body>
+</html>

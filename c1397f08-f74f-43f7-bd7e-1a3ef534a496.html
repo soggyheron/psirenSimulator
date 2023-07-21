@@ -1,0 +1,29 @@
+<html>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+ 
+        <div class="mermaid">
+            
+graph LR;
+A(Define network/cell table)
+
+A(MMPW)-->B[Landscape];
+C(Runoff)-.->B;
+
+subgraph stream
+direction TB;
+D[Water column]
+F-- Resuspension -->D;
+D-- Settling -->F[Bed];
+end
+E(Upstream)-.->stream;
+stream -.-> G(Downstream);
+B-->stream;
+
+        </div>
+ 
+    </body>
+</html>
